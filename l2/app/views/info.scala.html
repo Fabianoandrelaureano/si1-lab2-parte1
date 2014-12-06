@@ -1,0 +1,81 @@
+@(metas: List[Meta], semanas: List[Long], concluidas: Integer, nConcluidas: Integer)
+
+@main("Informações") {
+
+    
+    <!-- Barra -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <ul class="nav">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/cadastro">Adicionar Metas</a></li>
+                <li><a href="/remove">Gerenciar Metas</a></li>
+                <li><a href="/info">Info</a></li>
+            </ul>
+        </div>
+    </div>
+
+    
+
+    <div class="alert alert-info">
+        <h4>Total de metas alcançadas: @concluidas</h4>  <br>
+        <h4>Total de metas não alcançadas: @nConcluidas</h4>         
+    </div>
+
+    <table border=1 class="table table-striped table-condensed table-hover">
+        <h3>Metas Alcançadas</h3>
+        <thead>
+            <tr>
+                <th width=200 bgcolor="gray">Nome</th>
+                <th width=200 bgcolor="gray">Descrição</th>
+            </tr>
+        </thead>
+
+    @if(metas.isEmpty){
+        Nenhuma meta
+    }else {
+        <tbody>
+            @for(meta <- metas){
+
+                @if(meta.isConcluida() == "Concluida"){
+                <tr>
+                    <th>@meta.getNome()</th>
+                    <th>@meta.getDescricao()</th>
+                </tr>
+                }
+            }
+        </tbody>
+
+    }
+
+    </table>
+
+    <table border=1 class="table table-striped table-condensed table-hover">
+        <h3>Metas não Alcançadas</h3>
+        <thead>
+            <tr>
+                <th width=200 bgcolor="gray">Nome</th>
+                <th width=200 bgcolor="gray">Descrição</th>
+            </tr>
+        </thead>
+
+    @if(metas.isEmpty){
+        Nenhuma meta
+    }else {
+        <tbody>
+            @for(meta <- metas){
+
+                @if(meta.isConcluida() == "Não concluida"){
+                <tr>
+                    <th>@meta.getNome()</th>
+                    <th>@meta.getDescricao()</th>
+                </tr>
+                }
+            }
+        </tbody>
+
+    }
+
+    </table>
+
+}

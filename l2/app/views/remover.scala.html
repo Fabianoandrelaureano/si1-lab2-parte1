@@ -1,0 +1,60 @@
+@(metas: List[Meta])
+
+@main("Excluir meta") {
+
+    <head>
+        <title>Minhas Metas</title>
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+    </head>
+
+    <!-- Barra -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <ul class="nav">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/cadastro">Adicionar Metas</a></li>
+                <li><a href="/remove">Gerenciar Metas</a></li>
+                <li><a href="/info">Info</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Concluir Meta</h3>
+
+    <form action="/editar" method="post">
+                    <div class="form-group">
+                        
+                            <select name="opcoes" class="form-control">
+                                    @for(meta <- metas){
+                                        @if(meta.isConcluida() == "Não concluida"){
+                                            <option value="@meta.getId()">@meta.getData() - @meta.getNome()</option>
+                                        }
+                                    }
+                            </select>
+                        
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Concluir</button>
+    </form>
+
+    <h3>Excluir Meta</h3>
+
+    <form action="/remove" method="post">
+                    <div class="form-group">
+                        
+                            <select name="opcoes" class="form-control">
+                                    @for(meta <- metas){
+                                        <option value="@meta.getId()">@meta.getData() - @meta.getNome()</option>
+                                    }
+                            </select>
+                        
+                    </div>
+                    
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>
+
+}

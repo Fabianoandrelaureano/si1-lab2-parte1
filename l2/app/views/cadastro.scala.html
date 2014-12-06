@@ -1,0 +1,50 @@
+@(message: String)
+
+@main("Cadastrar Metas"){
+<head>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+
+
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+
+        <script>
+        $(function() {
+            $( "#calendario" ).datepicker();
+        });
+        </script>
+</head>
+
+    <!-- Barra -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <ul class="nav">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/cadastro">Adicionar Metas</a></li>
+                <li><a href="/remove">Gerenciar Metas</a></li>
+                <li><a href="/info">Info</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <h4>Adiconar nova meta</h4>
+    <form method="post" action="/meta"/>
+        <input name="nome" type="text" placeholder="nome" required/><br>
+        <input name="descricao" type="text" placeholder="descrição" required/><br>
+        <input name="data" type="text" placeholder="data" id="calendario" /><br>
+        
+        <select name="prioridade" placeholder="prioridade">
+        <option value="baixa">Baixa</option>
+        <option value="media">Media</option>
+        <option value="alta">Alta</option>
+        </select>
+        <br>
+
+        <button type="submit" class="btn btn-success btn-medium">Add</button>
+        
+        <!--<input type="submit" value="add"/>-->
+
+    </form>
+}
